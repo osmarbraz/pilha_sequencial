@@ -162,8 +162,8 @@ public class Principal {
 
         //Menu para controle da pilha
         while (opcao != 9) {	//Monta o menu de opcoes
-            opcao = Integer.parseInt(JOptionPane.showInputDialog("\t### Pilha Sequencial###\n"
-                    + "Selecione a opcao desejada:\n"
+            opcao = Integer.parseInt(JOptionPane.showInputDialog("\t### Pilha Sequencial ###\n"
+                    + "Selecione a opção desejada:\n"
                     + "1 - Empilhar\n"
                     + "2 - Consultar topo\n"
                     + "3 - Alterar Topo\n"
