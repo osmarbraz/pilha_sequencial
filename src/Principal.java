@@ -1,0 +1,223 @@
+
+/**
+ * Implementação de Pilha Sequencial de forma estruturada.
+ *
+ * Utiliza o critério LIFO
+ *
+ */
+import javax.swing.JOptionPane;
+
+public class Principal {
+
+    /**
+     * Tamanho máximo da pilha.
+     */
+    private static final int TAMANHO_PILHA = 10;
+    /**
+     * topo da pilha.
+     */
+    private static int topo = 0;
+
+    /**
+     * Realiza a leitura dos dados dos nós.
+     *
+     * @return O valor lido.
+     */
+    public static int leitura() {
+        return Integer.parseInt(JOptionPane.showInputDialog("Digite um valor:"));
+    }
+
+    /**
+     * Adiciona um novo nó no topo da pilha.
+     *
+     * Também chamado de push.
+     *
+     * @param _pilha Pilha onde será empilhada o novo elemento.
+     * @param _valor Valor a ser inserido na pilha.
+     * @return verdadeiro ou falso se conseguiu empilhar
+     */
+    public static boolean empilhar(int[] _pilha, int _valor) {
+        if (topo < TAMANHO_PILHA) {
+            //Adiciona o valor a fila
+            _pilha[topo] = _valor;
+            //Incrementa a próxima posição
+            topo = topo + 1;
+            return true;
+        } else {
+            System.out.println("Pilha Cheia!");
+            return false;
+        }
+    }
+
+    /**
+     * Acessa o primeiro nó da pilha sem removê-lo.
+     *
+     * Também chamado de Peek.
+     *
+     * @param _pilha Pilha que contém os nós.
+     * @param _topo Início da pilha.
+     * @return o valor ou -1 se não conseguiu acessar.
+     */
+    public static int acessarInicio(int[] _pilha, int _topo) {
+        if (_topo != 0) {
+            return _pilha[_topo-1];
+        } else {
+            System.out.println("Pilha Vazia");
+            return -1;
+        }
+    }
+
+    /**
+     * Altera o dado primeiro nó da pilha.
+     *
+     * @param _pilha Pilha que contem os nós.
+     * @param _topo Início da pilha.
+     * @param _valor Novo valor para o primeiro nó.
+     * @return verdadeiro ou falso se conseguiu alterar.
+     */
+    public static boolean alterarInicio(int[] _pilha, int _topo, int _valor) {
+        if (_topo != 0) {
+            _pilha[_topo-1] = _valor;
+            return true;
+        } else {
+            System.out.println("Pilha Vazia");
+            return false;
+        }
+    }
+
+    /**
+     * Remove um nó do topo da pilha.
+     *
+     * Também chamado de Pop.
+     *
+     * @param _pilha fila que contêm os nós.
+     * @return O nó que foi desempilhado.
+     */
+    public static int desempilhar(int[] _pilha) {
+        if (topo != 0) {
+            //Decrementa para o próximo elemento
+            topo = topo - 1;
+            //Guarda o valor do topo
+            int valor = _pilha[topo];            
+            return valor;
+        } else {
+            System.out.println("Pilha Vazia");
+            return -1;
+        }
+    }
+
+    /**
+     * Lista os dados da pilha.
+     *
+     * @param _pilha Fila para exibir os dados.
+     * @param _topo Início da fila.
+     */
+    public static void listar(int[] _pilha, int _topo) {
+        String temp = "";
+        for (int i = 0; i < _topo; i++) {
+            temp = temp + (i) + "-" + _pilha[i] + "\n";
+        }
+        JOptionPane.showMessageDialog(null, "Listagem \n" + temp);
+    }
+
+    /**
+     * Retorna se a pilha está cheia.
+     *
+     * @return Verdadeiro ou falso se a pilha está cheia.
+     */
+    public static boolean estaCheia() {
+        return topo == TAMANHO_PILHA;
+    }
+
+    /**
+     * Retorna se a pilha esta vazia.
+     *
+     * @return Verdadeiro ou falso se a pilha está vazia.
+     */
+    public static boolean estaVazia() {
+        return topo == 0;
+    }
+
+    /**
+     * Retorna a quantidade de elementos da pilha.
+     *
+     * @return A quantidade de elementos da pilha.
+     */
+    public static int tamanhoPilha() {
+        return topo;
+    }
+
+    /**
+     * Programa principal.
+     *
+     * @param args
+     */
+    public static void main(String[] args) {
+        /**
+         * Declaração da fila
+         */
+        int pilha[] = new int[TAMANHO_PILHA];
+        // Controla o menu da fila
+        int opcao = -1;
+
+        //Menu para controle da fila
+        while (opcao != 9) {	//Monta o menu de opcoes
+            opcao = Integer.parseInt(JOptionPane.showInputDialog("Menu de Pilha\n"
+                    + "1 - Empilhar             \n2 - Consultar topo\n"
+                    + "3 - Alterar Topo         \n4 - Desempilhar\n"
+                    + "5 - Está cheia?          \n6 - Está vazia?\n"
+                    + "7 - Tamanho da Pilha     \n8 - Listar\n"
+                    + "9 - Sair"));
+            switch (opcao) {
+                case 1: {
+                    if (empilhar(pilha, leitura()) == true) {
+                        JOptionPane.showMessageDialog(null, "Valor empilhado com Sucesso!");
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Valor não empilhado!");
+                    }
+                    break;
+                }
+                case 2: {
+                    int valor = acessarInicio(pilha, topo);
+                    JOptionPane.showMessageDialog(null, "O valor do topo é " + valor);
+                    break;
+                }
+                case 3: {
+                    alterarInicio(pilha, topo, leitura());
+                    break;
+                }
+                case 4: {
+                    int valor = desempilhar(pilha);
+                    if (valor != -1) {
+                        JOptionPane.showMessageDialog(null, "O valor " + valor + " foi desempilhado com Sucesso!");
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Valor não foi desempilhado!");
+                    }
+                    break;
+                }
+                case 5: {
+                    JOptionPane.showMessageDialog(null, "Está cheia : " + estaCheia());
+                    break;
+                }
+                case 6: {
+                    JOptionPane.showMessageDialog(null, "Está vazia : " + estaVazia());
+                    break;
+                }
+                case 7: {
+                    JOptionPane.showMessageDialog(null, "Tamanho da pilha : " + tamanhoPilha());
+                    break;
+                }
+                case 8: {
+                    if (estaVazia()) {
+                        JOptionPane.showMessageDialog(null, "Pilha vazia!");
+                    } else {
+                        listar(pilha, topo);
+                    }
+                    break;
+                }
+                default:
+                    break;
+            }
+        }//Fim While
+    }
+}
