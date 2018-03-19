@@ -38,9 +38,9 @@ public class Principal {
      */
     public static boolean empilhar(int[] _pilha, int _valor) {
         if (topo < TAMANHO_PILHA) {
-            //Adiciona o valor a fila
+            //Adiciona o valor a pilha
             _pilha[topo] = _valor;
-            //Incrementa a próxima posição
+            //Incrementa a próxima posição da pilha
             topo = topo + 1;
             return true;
         } else {
@@ -90,7 +90,7 @@ public class Principal {
      *
      * Também chamado de Pop.
      *
-     * @param _pilha fila que contêm os nós.
+     * @param _pilha Pilha que contêm os nós.
      * @return O nó que foi desempilhado.
      */
     public static int desempilhar(int[] _pilha) {
@@ -109,8 +109,8 @@ public class Principal {
     /**
      * Lista os dados da pilha.
      *
-     * @param _pilha Fila para exibir os dados.
-     * @param _topo Início da fila.
+     * @param _pilha Pilha para exibir os dados.
+     * @param _topo Topo da pilha.
      */
     public static void listar(int[] _pilha, int _topo) {
         String temp = "";
@@ -154,13 +154,13 @@ public class Principal {
      */
     public static void main(String[] args) {
         /**
-         * Declaração da fila
+         * Declaração da pilha
          */
         int pilha[] = new int[TAMANHO_PILHA];
-        // Controla o menu da fila
+        // Controla o menu da pilha
         int opcao = -1;
 
-        //Menu para controle da fila
+        //Menu para controle da pilha
         while (opcao != 9) {	//Monta o menu de opcoes
             opcao = Integer.parseInt(JOptionPane.showInputDialog("Menu de Pilha\n"
                     + "1 - Empilhar             \n2 - Consultar topo\n"
