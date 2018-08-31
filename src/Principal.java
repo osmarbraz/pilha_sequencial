@@ -37,8 +37,9 @@ public class Principal {
      * @return verdadeiro ou falso se conseguiu empilhar
      */
     public static boolean empilhar(int[] _pilha, int _valor) {
+        //Verifica se a pilha tem posições disponíveis para enfileirar        
         if (topo < TAMANHO_PILHA) {
-            //Adiciona o valor a pilha
+            //Adiciona o valor no topo da pilha
             _pilha[topo] = _valor;
             //Incrementa a próxima posição da pilha
             topo = topo + 1;
@@ -59,6 +60,7 @@ public class Principal {
      * @return o valor ou -1 se não conseguiu acessar.
      */
     public static int acessarInicio(int[] _pilha, int _topo) {
+        //Verifica se a pilha não está vazia
         if (_topo != 0) {
             return _pilha[_topo - 1];
         } else {
@@ -76,6 +78,7 @@ public class Principal {
      * @return verdadeiro ou falso se conseguiu alterar.
      */
     public static boolean alterarInicio(int[] _pilha, int _topo, int _valor) {
+        //Verifica se a pilha não está vazia
         if (_topo != 0) {
             _pilha[_topo - 1] = _valor;
             return true;
@@ -94,6 +97,7 @@ public class Principal {
      * @return O nó que foi desempilhado.
      */
     public static int desempilhar(int[] _pilha) {
+        //Verifica se a pilha não está vazia
         if (topo != 0) {
             //Decrementa para o próximo elemento
             topo = topo - 1;
@@ -153,10 +157,10 @@ public class Principal {
      * @param args
      */
     public static void main(String[] args) {
-        /**
-         * Declaração da pilha
-         */
+        // Declaração da pilha
         int pilha[] = new int[TAMANHO_PILHA];
+        //Quantidade incial de elementos na pilha
+        topo = 0;
         // Controla o menu da pilha
         int opcao = -1;
 
@@ -187,12 +191,12 @@ public class Principal {
                     JOptionPane.showMessageDialog(null, "O valor do topo é " + valor);
                     break;
                 }
-                case 3: {                    
+                case 3: {
                     if (alterarInicio(pilha, topo, leitura())) {
                         JOptionPane.showMessageDialog(null, "Alteração do início realizada com sucesso!");
                     } else {
                         JOptionPane.showMessageDialog(null, "Alteração do início não realizada!");
-                    }                    
+                    }
                     break;
                 }
                 case 4: {
@@ -200,7 +204,7 @@ public class Principal {
                     if (valor != -1) {
                         JOptionPane.showMessageDialog(null, "O valor " + valor + " foi desempilhado com Sucesso!");
                     } else {
-                        JOptionPane.showMessageDialog(null, "Valor não foi desempilhado!");
+                        JOptionPane.showMessageDialog(null, "Pilha vazia, valor não foi desempilhado!");
                     }
                     break;
                 }
