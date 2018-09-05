@@ -32,15 +32,15 @@ public class Principal {
      *
      * Também chamado de push.
      *
-     * @param _pilha Pilha onde será empilhada o novo elemento.
-     * @param _valor Valor a ser inserido na pilha.
+     * @param pilha Pilha onde será empilhada o novo elemento.
+     * @param novo Valor a ser inserido na pilha.
      * @return verdadeiro ou falso se conseguiu empilhar
      */
-    public static boolean empilhar(int[] _pilha, int _valor) {
+    public static boolean empilhar(int[] pilha, int novo) {
         //Verifica se a pilha tem posições disponíveis para enfileirar        
         if (topo < TAMANHO_PILHA) {
             //Adiciona o valor no topo da pilha
-            _pilha[topo] = _valor;
+            pilha[topo] = novo;
             //Incrementa a próxima posição da pilha
             topo = topo + 1;
             return true;
@@ -55,14 +55,14 @@ public class Principal {
      *
      * Também chamado de Peek.
      *
-     * @param _pilha Pilha que contém os nós.
-     * @param _topo Início da pilha.
+     * @param pilha Pilha que contém os nós.
+     * @param topo Início da pilha.
      * @return o valor ou -1 se não conseguiu acessar.
      */
-    public static int acessarInicio(int[] _pilha, int _topo) {
+    public static int acessarInicio(int[] pilha, int topo) {
         //Verifica se a pilha não está vazia
-        if (_topo != 0) {
-            return _pilha[_topo - 1];
+        if (topo != 0) {
+            return pilha[topo - 1];
         } else {
             System.out.println("Pilha Vazia");
             return -1;
@@ -72,15 +72,15 @@ public class Principal {
     /**
      * Altera o dado primeiro nó da pilha.
      *
-     * @param _pilha Pilha que contem os nós.
-     * @param _topo Início da pilha.
-     * @param _valor Novo valor para o primeiro nó.
+     * @param pilha Pilha que contem os nós.
+     * @param topo Início da pilha.
+     * @param valor Novo valor para o primeiro nó.
      * @return verdadeiro ou falso se conseguiu alterar.
      */
-    public static boolean alterarInicio(int[] _pilha, int _topo, int _valor) {
+    public static boolean alterarInicio(int[] pilha, int topo, int valor) {
         //Verifica se a pilha não está vazia
-        if (_topo != 0) {
-            _pilha[_topo - 1] = _valor;
+        if (topo != 0) {
+            pilha[topo - 1] = valor;
             return true;
         } else {
             System.out.println("Pilha Vazia");
@@ -93,16 +93,16 @@ public class Principal {
      *
      * Também chamado de Pop.
      *
-     * @param _pilha Pilha que contêm os nós.
+     * @param pilha Pilha que contêm os nós.
      * @return O nó que foi desempilhado.
      */
-    public static int desempilhar(int[] _pilha) {
+    public static int desempilhar(int[] pilha) {
         //Verifica se a pilha não está vazia
         if (topo != 0) {
             //Decrementa para o próximo elemento
             topo = topo - 1;
             //Guarda o valor do topo
-            int valor = _pilha[topo];
+            int valor = pilha[topo];
             return valor;
         } else {
             System.out.println("Pilha Vazia");
@@ -113,13 +113,13 @@ public class Principal {
     /**
      * Lista os dados da pilha.
      *
-     * @param _pilha Pilha para exibir os dados.
-     * @param _topo Topo da pilha.
+     * @param pilha Pilha para exibir os dados.
+     * @param topo Topo da pilha.
      */
-    public static void listar(int[] _pilha, int _topo) {
+    public static void listar(int[] pilha, int topo) {
         String temp = "";
-        for (int i = 0; i < _topo; i++) {
-            temp = temp + (i) + "-" + _pilha[i] + "\n";
+        for (int i = 0; i < topo; i++) {
+            temp = temp + (i) + "-" + pilha[i] + "\n";
         }
         JOptionPane.showMessageDialog(null, "Listagem \n" + temp);
     }
