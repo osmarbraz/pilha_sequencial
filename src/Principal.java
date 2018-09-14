@@ -45,7 +45,7 @@ public class Principal {
             topo = topo + 1;
             return true;
         } else {
-            System.out.println("Pilha Cheia!");
+            System.out.println("Empilar - Pilha Cheia.");
             return false;
         }
     }
@@ -64,7 +64,7 @@ public class Principal {
         if (topo != 0) {
             return pilha[topo - 1];
         } else {
-            System.out.println("Pilha Vazia");
+            System.out.println("Acessar início - Pilha Vazia.");
             return -1;
         }
     }
@@ -83,7 +83,7 @@ public class Principal {
             pilha[topo - 1] = valor;
             return true;
         } else {
-            System.out.println("Pilha Vazia");
+            System.out.println("Alterar início - Pilha Vazia.");
             return false;
         }
     }
@@ -105,7 +105,7 @@ public class Principal {
             int valor = pilha[topo];
             return valor;
         } else {
-            System.out.println("Pilha Vazia");
+            System.out.println("Desempilahr - Pilha Vazia.");
             return -1;
         }
     }
@@ -115,13 +115,15 @@ public class Principal {
      *
      * @param pilha Pilha para exibir os dados.
      * @param topo Topo da pilha.
+     * @return Uma String com os dados da pilha.
      */
-    public static void listar(int[] pilha, int topo) {
+    public static String listar(int[] pilha, int topo) {
+        //String de retorno
         String temp = "";
         for (int i = 0; i < topo; i++) {
             temp = temp + (i) + "-" + pilha[i] + "\n";
         }
-        JOptionPane.showMessageDialog(null, "Listagem \n" + temp);
+        return temp;
     }
 
     /**
@@ -147,7 +149,7 @@ public class Principal {
      *
      * @return A quantidade de elementos da pilha.
      */
-    public static int quantidadePilha() {
+    public static int getN() {
         return topo;
     }
 
@@ -159,13 +161,16 @@ public class Principal {
     public static void main(String[] args) {
         // Declaração da pilha
         int pilha[] = new int[TAMANHO_PILHA];
+
         //Quantidade incial de elementos na pilha
         topo = 0;
+
         // Controla o menu da pilha
         int opcao = -1;
 
         //Menu para controle da pilha
-        while (opcao != 9) {	//Monta o menu de opcoes
+        while (opcao != 9) {
+            //Monta o menu de opções
             opcao = Integer.parseInt(JOptionPane.showInputDialog("\t### Pilha Sequencial ###\n"
                     + "Selecione a opção desejada:\n"
                     + "1 - Empilhar\n"
@@ -179,7 +184,9 @@ public class Principal {
                     + "9 - Sair"));
             switch (opcao) {
                 case 1: {
-                    if (empilhar(pilha, leitura()) == true) {
+                    //Preenche o valor do dado
+                    int dado = leitura();
+                    if (empilhar(pilha, dado) == true) {
                         JOptionPane.showMessageDialog(null, "Valor empilhado com Sucesso!");
                     } else {
                         JOptionPane.showMessageDialog(null, "Valor não empilhado!");
@@ -187,12 +194,19 @@ public class Principal {
                     break;
                 }
                 case 2: {
-                    int valor = acessarInicio(pilha, topo);
-                    JOptionPane.showMessageDialog(null, "O valor do topo é " + valor);
+                    if (!estaVazia()) {
+                        int dado = acessarInicio(pilha, topo);
+                        JOptionPane.showMessageDialog(null, "O valor do topo é " + dado);
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Pilha vazia!");
+                    }
+
                     break;
                 }
                 case 3: {
-                    if (alterarInicio(pilha, topo, leitura())) {
+                    //Preenche o valor do dado
+                    int dado = leitura();
+                    if (alterarInicio(pilha, topo, dado)) {
                         JOptionPane.showMessageDialog(null, "Alteração do início realizada com sucesso!");
                     } else {
                         JOptionPane.showMessageDialog(null, "Alteração do início não realizada!");
@@ -200,9 +214,9 @@ public class Principal {
                     break;
                 }
                 case 4: {
-                    int valor = desempilhar(pilha);
-                    if (valor != -1) {
-                        JOptionPane.showMessageDialog(null, "O valor " + valor + " foi desempilhado com Sucesso!");
+                    int dado = desempilhar(pilha);
+                    if (dado != -1) {
+                        JOptionPane.showMessageDialog(null, "O valor " + dado + " foi desempilhado com Sucesso!");
                     } else {
                         JOptionPane.showMessageDialog(null, "Pilha vazia, valor não foi desempilhado!");
                     }
@@ -217,20 +231,21 @@ public class Principal {
                     break;
                 }
                 case 7: {
-                    JOptionPane.showMessageDialog(null, "A quantidade de elementos da pilha : " + quantidadePilha());
+                    JOptionPane.showMessageDialog(null, "A quantidade de elementos da pilha : " + getN());
                     break;
                 }
                 case 8: {
-                    if (estaVazia()) {
-                        JOptionPane.showMessageDialog(null, "Pilha vazia!");
+                    if (!estaVazia()) {
+                        JOptionPane.showMessageDialog(null, "Listagem \n" + listar(pilha, topo));
                     } else {
-                        listar(pilha, topo);
+                        JOptionPane.showMessageDialog(null, "Pilha vazia!");
+
                     }
                     break;
                 }
                 default:
                     break;
-            }
+            }//Fim Switch
         }//Fim While
-    }
+    }//Fim main
 }
