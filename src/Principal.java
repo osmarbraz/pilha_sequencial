@@ -33,14 +33,14 @@ public class Principal {
      * Também chamado de push.
      *
      * @param pilha Pilha onde será empilhada o novo elemento.
-     * @param novo Valor a ser inserido na pilha.
+     * @param valor Um novo valor de um nó a ser inserido na pilha.
      * @return verdadeiro ou falso se conseguiu empilhar
      */
-    public static boolean empilhar(int[] pilha, int novo) {
+    public static boolean empilhar(int[] pilha, int valor) {
         //Verifica se a pilha tem posições disponíveis para enfileirar        
         if (topo < TAMANHO_PILHA) {
             //Adiciona o valor no topo da pilha
-            pilha[topo] = novo;
+            pilha[topo] = valor;
             //Incrementa a próxima posição da pilha
             topo = topo + 1;
             return true;
@@ -72,7 +72,7 @@ public class Principal {
     /**
      * Altera o dado primeiro nó da pilha.
      *
-     * @param pilha Pilha que contem os nós.
+     * @param pilha Pilha que contém os nós.
      * @param topo Início da pilha.
      * @param valor Novo valor para o primeiro nó.
      * @return verdadeiro ou falso se conseguiu alterar.
@@ -149,7 +149,7 @@ public class Principal {
      *
      * @return A quantidade de elementos da pilha.
      */
-    public static int getN() {
+    public static int getQuantidade() {
         return topo;
     }
 
@@ -231,7 +231,7 @@ public class Principal {
                     break;
                 }
                 case 7: {
-                    JOptionPane.showMessageDialog(null, "A quantidade de elementos da pilha : " + getN());
+                    JOptionPane.showMessageDialog(null, "A quantidade de elementos da pilha : " + getQuantidade());
                     break;
                 }
                 case 8: {
